@@ -1,0 +1,36 @@
+
+name: Uuenda lumetorje KML
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-kml:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Laadi hoidla
+        uses: actions/checkout@v4
+
+      - name: Seadista Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Genereeri Keila 1 KML
+        run: python scripts/agol_to_kml.py
+
+      - name: Salvesta KML
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add keila1.kml
+          if ! git diff --cached --quiet; then
+            git commit -m "Automaatne Keila 1 KML uuendus"
+            git push
+          fi
