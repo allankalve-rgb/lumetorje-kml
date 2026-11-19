@@ -78,10 +78,21 @@ def create_kml(filename, name, features):
     document = ET.SubElement(root, tag("Document"))
     ET.SubElement(document, tag("name")).text = name
 
+
     style = ET.SubElement(document, tag("Style"), id="road")
     line_style = ET.SubElement(style, tag("LineStyle"))
-    ET.SubElement(line_style, tag("color")).text = "ff00ffff"
+    colors = {
+        "Keila 1": "ff0000a8",
+        "Keila 2": "ffa84d00",
+        "Keila 3": "ff73004c",
+        "Vasalemma": "ffb62600",
+        "Madise": "ff8200a9",
+        "Padise": "ff022877",
+        "Paldiski": "ff7b007a",
+    }
+    ET.SubElement(line_style, tag("color")).text = colors[name]
     ET.SubElement(line_style, tag("width")).text = "3"
+
 
     for feature in features:
         properties = feature.get("properties") or {}
