@@ -86,7 +86,7 @@ def create_kml(filename, name, features):
         "Keila 2": "ffa84d00",
         "Keila 3": "ff73004c",
         "Vasalemma": "ffb62600",
-        "Madise": "ff8200a9",
+        "Madise": "ff335600",
         "Padise": "ff022877",
         "Paldiski": "ff7b007a",
     }
